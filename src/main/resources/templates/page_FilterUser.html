@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+    <form method="post" th:action="${'/page_FilterUser'}">
+        <input type="text" name="fname">
+        <select id="cbFilter" name="cbFilter">
+            <option value="1" label="Точно"></option>
+            <option value="2" label="Не точно"></option>
+        </select>
+        <button type="submit">Найти</button>
+        <div th:each="user : ${users}">
+            <h3 th:text="${user.fname}"></h3>
+            <p th:text="${user.lname}"></p>
+        </div>
+    </form>
+    </body>
+</html>

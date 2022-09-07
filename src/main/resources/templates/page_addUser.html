@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Добавление пользователя</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+    <form th:action="${'/page_addUser'}" method="post">
+        <input type="text" name="fname" placeholder="Введите имя">
+        <input type="text" name="lname" placeholder="Введите фамилия">
+        <input type="number" name="oklad" placeholder="Введите оклад">
+        <input type="date" name="dateU" placeholder="dd-mm-yyyy">
+        <input type="text" name="login" placeholder="Введите логин">
+        <br>
+        <button type="submit">Добавить пользователя</button>
+    </form>
+    </body>
+</html>

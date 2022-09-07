@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>добавление компьютера</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+    <body>
+    <form th:action="${'/page_addPC'}" method="post">
+        <input type="text" name="name" placeholder="Введите название компьютера">
+        <input type="text" name="cpu" placeholder="Введите название процессера">
+        <input type="number" name="ram" placeholder="Введите оперативной памяти">
+        <p>Введите есть ли в наличае</p>
+        <input type="checkbox" name="there_is">
+        <br>
+        <input type="number" name="price" placeholder="Введите цену за компьютер">
+        <br>
+        <button type="submit">Добавить компьютер</button>
+    </form>
+    </body>
+</html>

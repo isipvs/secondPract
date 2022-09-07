@@ -1,12 +1,10 @@
 package com.example.secondPract.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "modelpc")
 public class ModelPC {
 
     @Id

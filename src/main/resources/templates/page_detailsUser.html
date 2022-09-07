@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <div th:each="u : ${users}">
+      <h3>Подробнее про пользователя: </h3> <h3 th:text="${u.fname}"></h3>
+      <p th:text="${u.lname}"></p>
+      <p th:text="${u.dateU}"></p>
+      <a th:href="'/page/' + ${u.id_user} + '/edit'">Редактировать</a>
+      <form th:action="'/page/' + ${u.id_user} + '/remove'" method="post">
+        <button type="submit" class="btn btn-del">Удалить</button>
+      </form>
+    </div>
+    </body>
+</html>

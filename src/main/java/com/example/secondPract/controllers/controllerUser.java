@@ -7,17 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 public class controllerUser {
@@ -59,6 +54,20 @@ public class controllerUser {
         model.addAttribute("users", tmodelUserS);
         }
         return "page_FilterUser";
+    }
+
+    @GetMapping("/User/{id_user}")
+    public String blogDetails(@PathVariable(value = "id_user") long id_user, Model model)
+    {
+        Optional<ModelUser> users = repoUser.findById(id_user);
+        ArrayList<ModelUser> res = new ArrayList<>();
+        users.ifPresent(res::add);
+        model.addAttribute("users", res);
+        if(!repoUser.existsById(id_user))
+        {
+            return "redirect:/";
+        }
+        return "page_detailsUser";
     }
 
 }

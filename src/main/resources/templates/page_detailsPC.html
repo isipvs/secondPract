@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <div th:each="pc : ${pcs}">
+      <h3>Подробнее про компьютер:</h3>
+      <h3 th:text="${pc.name}"></h3>
+      <p th:text="${pc.cpu}"></p>
+      <p th:text="${pc.ram}"></p>
+      <a th:href="'/PC/' + ${pc.id_pc} + '/edit'">Редактировать</a>
+      <form th:action="'/PC/' + ${pc.id_pc} + '/remove'" method="post">
+        <button type="submit" class="btn btn-del">Удалить</button>
+      </form>
+    </div>
+    </body>
+</html>

@@ -5,7 +5,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-
         <div th:insert="blocks/head"></div>
         <h1>Главная страница</h1>
 
@@ -22,12 +21,15 @@
             <p  th:text="${u.lname}"></p>
             <p  th:text="${u.login}"></p>
             <h5 th:text="${u.login}"></h5>
+            <br>
+            <a  th:href="'/User/' + ${u.id_user}">Подробнее</a>
         </div>
         <div th:each="pc : ${pcs}">
             <h5 th:text="${pc.name}"></h5>
             <h5 th:text="${pc.cpu}"></h5>
             <p  th:text="${pc.ram}"></p>
             <p  th:text="${pc.price}"></p>
+            <a  th:href="'/PC/' + ${pc.id_pc}">Подробнее</a>
         </div>
     </body>
 </html>

@@ -1,7 +1,6 @@
 package com.example.secondPract.models;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "modelpc")
@@ -11,8 +10,10 @@ public class ModelPC {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_pc;
     private String name, cpu, ram;
-    private Boolean there_is;
-    private BigDecimal price;
+
+    @Column(name = "there_is")
+    private Boolean has = Boolean.TRUE;
+    private int price;// = int.ZERO;
 
     public long getId_pc() {
         return id_pc;
@@ -46,28 +47,28 @@ public class ModelPC {
         this.ram = ram;
     }
 
-    public Boolean getThere_is() {
-        return there_is;
+    public Boolean getHas() {
+        return has;
     }
 
-    public void setThere_is(Boolean there_is) {
-        this.there_is = there_is;
+    public void setHas(Boolean has) {
+        this.has = has;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
     
-    public ModelPC(String name, String cpu, String ram, Boolean there_is, BigDecimal price) {
+    public ModelPC(String name, String cpu, String ram, Boolean has, int price) {
         this.name = name;
         this.cpu = cpu;
         this.ram = ram;
-        this.there_is = there_is;
+        this.has = has;
         this.price = price;
     }
 

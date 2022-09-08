@@ -11,7 +11,7 @@
       <p th:text="${pc.cpu}"></p>
       <p th:text="${pc.ram}"></p>
       <a th:href="'/PC/' + ${pc.id_pc} + '/edit'">Редактировать</a>
-      <form th:action="'/PC/' + ${pc.id_pc} + '/remove'" method="post">
+      <form th:action="'/PC/' + ${pc.id_pc} + '/delete'" method="post">
         <button type="submit" class="btn btn-del">Удалить</button>
       </form>
     </div>

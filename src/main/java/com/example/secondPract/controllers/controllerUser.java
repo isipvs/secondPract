@@ -1,6 +1,5 @@
 package com.example.secondPract.controllers;
 
-import com.example.secondPract.models.ModelPC;
 import com.example.secondPract.models.ModelUser;
 import com.example.secondPract.repo.RepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.*;
@@ -26,7 +24,7 @@ public class controllerUser {
     @PostMapping("/page_addUser")
     public String pAddUser(@RequestParam String fname,
                            @RequestParam String lname,
-                           @RequestParam BigDecimal oklad,
+                           @RequestParam int oklad,
                            @RequestParam String dateU,
                            @RequestParam String login,
                            ModelUser model
@@ -57,7 +55,7 @@ public class controllerUser {
     }
 
     @GetMapping("/User/{id_user}")
-    public String blogDetails(@PathVariable(value = "id_user") long id_user, Model model)
+    public String blogDetailsUser(@PathVariable(value = "id_user") long id_user, Model model)
     {
         Optional<ModelUser> users = repoUser.findById(id_user);
         ArrayList<ModelUser> res = new ArrayList<>();
@@ -69,5 +67,45 @@ public class controllerUser {
         }
         return "page_detailsUser";
     }
+    
+    @GetMapping("/User/{id_user}/edit")
+    public String blogEditUser(@PathVariable("id_user")long id_user,
+                             Model model)
+    {
+        if(!repoUser.existsById(id_user)){
+            return "redirect:/";
+        }
+        Optional<ModelUser> users = repoUser.findById(id_user);
+        ArrayList<ModelUser> res = new ArrayList<>();
+        users.ifPresent(res::add);
+        model.addAttribute("users",res);
+        return "page_editUser";
+    }
 
+    @PostMapping("/User/{id_user}/edit")
+    public String pageUpdateUser(@PathVariable("id_user")long id_user,
+                               @RequestParam String fname,
+                               @RequestParam String lname,
+                               @RequestParam String login,
+                               @RequestParam int oklad,
+                               @RequestParam String dateU,
+                               Model model)
+    {
+        //public ModelUser(String fname, String lname, String  login, int okald, String dateU) {
+        ModelUser users = repoUser.findById(id_user).orElseThrow();
+        users.setFname(fname);
+        users.setLname(lname);
+        users.setLogin(login);
+        users.setDateU(dateU);
+        users.setOkald(oklad);
+        repoUser.save(users);
+        return "redirect:/";
+    }
+
+    @PostMapping("/User/{id_user}/remove")
+    public String deleteUser(@PathVariable("id_user") long id_user, Model model){
+        ModelUser users = repoUser.findById(id_user).orElseThrow();
+        repoUser.delete(users);
+        return "redirect:/";
+    }
 }

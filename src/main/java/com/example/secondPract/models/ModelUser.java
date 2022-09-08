@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -13,7 +12,7 @@ public class ModelUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_user;
     private String fname, lname, login;
-    private BigDecimal oklad;
+    private int oklad;
     private String dateU;
 
     public long getId_user() { return id_user;}
@@ -44,11 +43,11 @@ public class ModelUser {
         this.login = login;
     }
 
-    public BigDecimal getOkald() {
+    public int getOkald() {
         return oklad;
     }
 
-    public void setOkald(BigDecimal okald) {
+    public void setOkald(int okald) {
         this.oklad = oklad;
     }
 
@@ -61,7 +60,7 @@ public class ModelUser {
     }
 
 
-    public ModelUser(String fname, String lname, String  login, BigDecimal okald, String dateU) {
+    public ModelUser(String fname, String lname, String  login, int okald, String dateU) {
         this.fname = fname;
         this.lname = lname;
         this.login = login;

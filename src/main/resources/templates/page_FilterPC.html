@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Фильтрация компьютеров</title>
+    <title>Отбор компьютеров о фильтру</title>
 </head>
     <body>
     <form method="post" th:action="${'/page_FilterPC'}">
@@ -11,8 +11,10 @@
             <option value="1" label="Точно"></option>
             <option value="2" label="Не точно"></option>
           </select>
+      <p>
       <button type="submit">Найти</button>
-      <div th:each="pc : ${pcs}">
+      <p>
+        <div th:each="pc : ${pcs}">
           <h3 th:text="${pc.name}"></h3>
           <p th:text="${pc.price}"></p>
       </div>

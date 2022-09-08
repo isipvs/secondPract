@@ -1,14 +1,12 @@
 package com.example.secondPract.controllers;
 
 import com.example.secondPract.models.ModelPC;
-import com.example.secondPract.models.ModelUser;
 import com.example.secondPract.repo.RepoPC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,11 +25,11 @@ public class controllerPC {
     public String pAddPC(@RequestParam String name,
                          @RequestParam String cpu,
                          @RequestParam String ram,
-                         @RequestParam Boolean there_is,
-                         @RequestParam BigDecimal price,
+                         @RequestParam Boolean has,
+                         @RequestParam int price,
                          Model model
     ) {
-        ModelPC modelPC = new ModelPC(name, cpu, ram, there_is, price);
+        ModelPC modelPC = new ModelPC(name, cpu, ram, has, price);
         repoPC.save(modelPC);
         return "redirect:/";
     }
@@ -89,22 +87,29 @@ public class controllerPC {
     }
 
     @PostMapping("/PC/{id_pc}/edit")
-    //public ModelPC(String name, String cpu, String ram, Boolean there_is, BigDecimal price) {
+    //public ModelPC(String name, String cpu, String ram, Boolean there_is, int price) {
     public String pageUpdatePC(@PathVariable("id_pc")long id_pc,
                                  @RequestParam String name,
                                  @RequestParam String cpu,
                                  @RequestParam String ram,
-                                 @RequestParam Boolean there_is,
-                                 @RequestParam BigDecimal price,
+                                 @RequestParam(required=false) Boolean has,
+                                 @RequestParam int price,
                                  Model model)
     {
         ModelPC pcs = repoPC.findById(id_pc).orElseThrow();
         pcs.setName(name);
         pcs.setCpu(cpu);
         pcs.setRam(ram);
-        pcs.setThere_is(there_is);
+        pcs.setHas(has == null ? Boolean.FALSE : has);
         pcs.setPrice(price);
         repoPC.save(pcs);
+        return "redirect:/";
+    }
+
+    @PostMapping("/PC/{id_pc}/delete")
+    public String deletePC(@PathVariable("id_pc") long id_pc, Model model){
+        ModelPC pcs = repoPC.findById(id_pc).orElseThrow();
+        repoPC.delete(pcs);
         return "redirect:/";
     }
 

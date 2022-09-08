@@ -43,11 +43,11 @@ public class ModelUser {
         this.login = login;
     }
 
-    public int getOkald() {
+    public int getOklad() {
         return oklad;
     }
 
-    public void setOkald(int okald) {
+    public void setOkald(int oklad) {
         this.oklad = oklad;
     }
 
@@ -60,11 +60,11 @@ public class ModelUser {
     }
 
 
-    public ModelUser(String fname, String lname, String  login, int okald, String dateU) {
+    public ModelUser(String fname, String lname, String  login, int oklad, String dateU) {
         this.fname = fname;
         this.lname = lname;
         this.login = login;
-        this.oklad = okald;
+        this.oklad = oklad;
         this.dateU = dateU;
     }
 
